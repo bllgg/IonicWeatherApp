@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+//import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Http} from '@angular/http';
 import 'rxjs/add/operator/map';
 
 /*
@@ -13,13 +14,14 @@ export class WeatherProvider {
   apiKey = 'a652b80f2f99d74d';
   url;
 
-  constructor(public http: HttpClient) {
+  constructor(public http: Http) {
     console.log('Hello WeatherProvider Provider');
     this.url = 'http://api.wunderground.com/api/'+ this.apiKey +'/conditions/q';
   }
 
-  getWeather(city, state){
-    //return this.http.get(this.url+'/'+state+'/'+city+'.json').map(res => res.json());
+  getWeather(city, country){
+    return this.http.get(this.url+'/'+country+'/'+city+'.json')
+    .map(res => res.json());
   }
 
 }
